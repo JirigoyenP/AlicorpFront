@@ -1,4 +1,4 @@
-# Arquitectura del Sistema - Solution Tech Chat
+Solution Tech Chat
 
 ## Visión General
 
