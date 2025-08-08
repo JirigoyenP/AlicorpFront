@@ -22,7 +22,7 @@ Aplicación SPA (Single Page Application) con arquitectura de componentes basada
 ### 1. Clonar el Repositorio
 
 ```bash
-git clone https://github.com/yourusername/solution-tech-chat.git
+git clone https://github.com/JirigoyenP/solution-tech-chat.git
 cd solution-tech-chat
 ```
 
@@ -39,12 +39,13 @@ pnpm install
 ```
 
 ### 4. Configurar Variables de Entorno
+Crea un . env 
 
-```bash
-cp .env.example .env.local
-```
-
-Edita `.env.local` con tus configuraciones específicas.
+NEXT_PUBLIC_APP_NAME=Solution Tech Chat
+NEXT_PUBLIC_COMPANY_NAME=SOLUTION TECH
+NEXT_PUBLIC_API_URL=http://localhost:3000/api
+NEXT_PUBLIC_MAX_FILE_SIZE=10485760
+NEXT_PUBLIC_ENABLE_MSW=true
 
 ### 5. Inicializar MSW (Mock Service Worker)
 
@@ -75,8 +76,6 @@ La aplicación estará disponible en http://localhost:3000
 
 - `useChat`: Gestión de conversaciones
 - `useLocalStorage`: Persistencia de datos
-- `useKeyboardShortcuts`: Comandos de teclado
-- `useMediaQuery`: Detección responsive
 
 ### 3. Capa de Estado
 
@@ -164,11 +163,6 @@ solution-tech-chat/
 </ChatInterface>
 ```
 
-### Estado Inmutable
-
-- Zustand con actualizaciones inmutables
-- Spread operators para nuevos estados
-- No mutación directa de objetos
 
 ### Separación de Responsabilidades
 
@@ -194,16 +188,6 @@ interface ChatStore {
 }
 ```
 
-### React Query Configuration
-
-```typescript
-{
-  staleTime: 60000,              // 1 minuto
-  cacheTime: 300000,             // 5 minutos
-  refetchOnWindowFocus: false,
-  retry: 3
-}
-```
 
 ## Persistencia de Datos
 
@@ -263,57 +247,6 @@ interface ChatStore {
 const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'video/mp4', 'application/pdf']
 const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10MB
 ```
-
-## Decisiones Técnicas
-
-### ¿Por qué Next.js 15?
-
-- App Router con React Server Components
-- Optimización automática de imágenes
-- Built-in TypeScript support
-- Excelente DX (Developer Experience)
-
-### ¿Por qué Zustand sobre Redux?
-
-- Menos boilerplate (90% menos código)
-- API más simple e intuitiva
-- Bundle size menor (8KB vs 60KB)
-- Persistencia built-in
-
-### ¿Por qué MSW para Mocking?
-
-- Intercepta requests a nivel de Service Worker
-- Mismo código para desarrollo y testing
-- Responses realistas con delays
-- No requiere cambios en el código de producción
-
-### ¿Por qué TailwindCSS + ShadCN?
-
-- Componentes pre-estilizados pero customizables
-- Consistencia visual garantizada
-- Tree-shaking automático
-- Accesibilidad incluida (ARIA)
-
-## Escalabilidad
-
-Preparado para:
-
-- **WebSockets**: Estructura lista para Socket.io
-- **SSR/SSG**: Compatible con rendering del servidor
-- **Microservicios**: Services layer desacoplado
-- **CDN**: Assets optimizados para CDN
-- **i18n**: Estructura preparada para internacionalización
-- **Testing**: Arquitectura testeable con Jest/Cypress
-
-## Métricas de Performance
-
-| Métrica | Objetivo | Actual |
-|---------|----------|--------|
-| First Contentful Paint | < 1.8s | 1.2s |
-| Largest Contentful Paint | < 2.5s | 2.1s |
-| Time to Interactive | < 3.8s | 3.2s |
-| Bundle Size (gzipped) | < 200KB | 180KB |
-| Lighthouse Score | > 90 | 95 |
 
 ## Endpoints API (MSW)
 
